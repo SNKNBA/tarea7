@@ -1,64 +1,65 @@
 from customer import Customer
 from item import Item
 from seller import Seller
+from wallet import __init__
 
 
-seller = Seller("DIC")
+seller = Seller("DICストア")
 for i in range(10):
     Item("CPU", 40830, seller)
-    Item("Memory", 13880, seller)
-    Item("Motherboard", 28980, seller)
-    Item("Power Unit", 8980, seller)
-    Item("PC Case", 8727, seller)
-    Item("3.5-inch HDD", 10980, seller)
-    Item("2.5-inch SSD", 13370, seller)
+    Item("Memoria", 13880, seller)
+    Item("Tarjeta Madre", 28980, seller)
+    Item("Unidad de fuente de alimentación", 8980, seller)
+    Item("Caja de la computadora", 8727, seller)
+    Item("Disco duro de 3.5'", 10980, seller)
+    Item("SSD de 2,5 pulgadas", 13370, seller)
     Item("M.2 SSD", 12980, seller)
-    Item("CPU Cooler", 13400, seller)
-    Item("Graphics Card", 23800, seller)
+    Item("Cooler de CPU", 13400, seller)
+    Item("Tablero Gráfico", 23800, seller)
 
-print("🤖 Please tell me your name")
+print("🤖 Porfavor dime tu nombre")
 customer = Customer(input())
 
-print("🏧 Enter the amount to charge into your wallet")
+print("🏧 Por favor ingrese el monto a cargar en la billetera")
 customer.wallet.deposit(int(input()))
 
-print("🛍️ Shopping is starting")
+print("🛍️ Empieza a comprar")
 end_shopping = False
 while not end_shopping:
-    print("📜 Product List")
+    print("📜 Lista de Productos")
     seller.show_items()
 
-    print("️️⛏ Please enter the product number")
+    print("️️⛏ Por favor, ingrese el número del producto")
     number = int(input())
 
-    print("⛏ Please enter the quantity")
+    print("⛏ Por favor, ingrese la cantidad del producto")
     quantity = int(input())
 
     items = seller.pick_items(number, quantity)
     for item in items:
         customer.cart.add(item)
-    print("🛒 Cart Contents")
+    print("🛒 Contenido del carrito")
     customer.cart.show_items()
-    print(f"🤑 Total Amount: {customer.cart.total_amount()}")
+    print(f"🤑 Cantidad Total: {customer.cart.total_amount()}")
 
-    print("😭 Do you want to end shopping? (yes/no)")
+    print("😭 Terminar de comprar?(yes/no)")
     end_shopping = input() == "yes"
 
-print("💸 Do you want to confirm the purchase? (yes/no)")
+print("💸 Confirmar la compra?(yes/no)")
 if input() == "yes":
     customer.cart.check_out()
 
-print("୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈Result┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧")
-print(f"️🛍️ {customer.name}'s possessions")
+print("୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈Resultado┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧")
+print(f"️🛍️ Propuedad de {customer.name}")
 customer.show_items()
-print(f"😱👛 {customer.name}'s wallet balance: {customer.wallet.balance}")
+print(f"😱👛 Saldo en la cartera de {customer.name}: {customer.wallet.balance}")
 
-print(f"📦 {seller.name}'s inventory")
+print(f"📦Disponible de {seller.name}")
 seller.show_items()
-print(f"😻👛 {seller.name}'s wallet balance: {seller.wallet.balance}")
+print(f"😻👛 Saldo en la cartera de {seller.name}: {seller.wallet.balance}")
 
-print("🛒 Cart Contents")
+print("🛒 Contenido del carrito")
 customer.cart.show_items()
-print(f"🌚 Total Amount: {customer.cart.total_amount()}")
+print(f"🌚 Cantidad Total: {customer.cart.total_amount()}")
 
-print("🎉 End")
+print("🎉 Fin")
